@@ -43,8 +43,7 @@ body {
 	float: left;
 	width: 175px;
 	height: 175px;
-	margin: 10px 12px;
-	padding: 0px;
+	padding: 5px;
 	background: #F3F3F3;
 	box-sizing: border-box;
 	position: relative;
@@ -55,8 +54,6 @@ body {
 	position: relative;
 	width: 100%;
 	height: 100%;
-	padding: 5px;
-	box-sizing: border-box;
 }
 
 .img-wrap img {
@@ -72,6 +69,5 @@ body {
 }
 
 .img-wrap a:focus {
-	border: 2px solid #273C90;
-	outline: none;
+	outline: #273C90 auto 5px;
 }
