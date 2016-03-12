@@ -1,0 +1,74 @@
+* {
+	margin: 0;
+	padding: 0;
+}
+
+body {
+	background: #ccc;
+}
+
+
+.clearfix:before,
+.clearfix:after {
+    content: "";
+    display: table;
+} 
+.clearfix:after {
+    clear: both;
+}
+.clearfix {
+    zoom: 1; /* For IE 6/7 (trigger hasLayout) */
+}
+
+#container {
+	margin: 0 auto;
+	width: 1024px;
+	background: #fff;
+	overflow-y: hidden;
+	overflow-x: hidden;
+	height: 590px;
+}
+
+.loading {
+	padding: 5px;
+	margin: 10px 0px;
+	height: 175px;
+	text-align: center;
+	clear: both;
+	font-size: 14px;
+	font-style: italic;
+}
+
+.img-wrap {
+	float: left;
+	width: 175px;
+	height: 175px;
+	margin: 10px 12px;
+	padding: 5px;
+	background: #F3F3F3;
+	box-sizing: border-box;
+	position: relative;
+}
+
+.img-wrap a {
+	display: block;
+	position: relative;
+	width: 100%;
+	height: 100%;
+}
+
+.img-wrap img {
+	position: absolute;
+	left: 0;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	margin: auto;
+	max-width: 165px;
+	max-height: 165px;
+	border: none;
+}
+
+.img-wrap a:focus {
+	outline: #273C90 auto 5px;
+}
