@@ -2,20 +2,7 @@ var flickr = new Flickr({
   api_key: "b61f22692d6e68e3ba74fa94df895a3c"
 });
 
-function debounce(func, wait, immediate) {
-	var timeout;
-	return function() {
-		var context = this, args = arguments;
-		var later = function() {
-			timeout = null;
-			if (!immediate) func.apply(context, args);
-		};
-		var callNow = immediate && !timeout;
-		clearTimeout(timeout);
-		timeout = setTimeout(later, wait);
-		if (callNow) func.apply(context, args);
-	};
-};
+var timeStamp = new Date().getTime();
 
 var app  = {
 	startpoint: 0,
@@ -25,14 +12,11 @@ var app  = {
 	page: 0,
 	limit: 0, 
 	focusId: 0,
-	mwBlock: false,
 
 	init: function (params) {
 		Object.assign(this, params);
-		this.isChrome = navigator.userAgent.toLowerCase().indexOf('chrome') > -1;
-
 		this.getPhotos(this.renderPhotos.bind(this));
-		
+
 		this.on('keydown', '.img-a', this.onKeyDown.bind(this));
 		this.on('mousewheel', this , this.onScroll.bind(this));
 
@@ -40,24 +24,21 @@ var app  = {
 	},
 
 	onScroll: function (e) {
-		var delta = Math.max(-1, Math.min(1, (e.wheelDelta || -e.detail)));
-	
-		if (delta == 0 || this.mwBlock) {
+		var delta = Math.max(-1, Math.min(1, (e.wheelDelta || -e.detail))),
+			timeNow = new Date().getTime();
+
+		if (delta == 0) {
 			return false;
 		}
 		
-		this.mwBlock = true;
-
-		if (delta == -1) {
-			this.setFocus(this.focusId, 5);
-		} else {
-			this.setFocus(this.focusId, -5);
-		}
+		if (timeNow - timeStamp < 20) {
+            timeStamp = timeNow;
+            return false;
+        } 
+        
+        timeStamp = timeNow;
+        this.setFocus(this.focusId, (delta == -1) ? 5: -5);
 		
-		debounce(function () {
-			this.mwBlock = false;
-		}.bind(this), 600)();
-
 		return false;
 	},
 
@@ -168,7 +149,6 @@ var app  = {
 	},
 
 	on: function (event, selector, callback) {
-		
 		this.container.addEventListener(event, function(e) {
 			if (selector == this) {
 				callback(e);
