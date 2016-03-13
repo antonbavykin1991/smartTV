@@ -199,6 +199,5 @@ var app  = {
 }.init({
 	page: 1,
 	limit: 50,
-	container: document.querySelector('.img-container'),
-	url : 'https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=e788b76ef4061b1b6fc9f65ca9472472&tags=cats&format=json&nojsoncallback=1&auth_token=72157665630134661-197dc7a2455b20f1&api_sig=17e3964da09d2c68f84165a97b7150a1'
+	container: document.querySelector('.img-container')
 });
